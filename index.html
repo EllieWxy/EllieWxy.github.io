@@ -80,11 +80,11 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="Ellie Wxy的博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Ellie Wxy的博客">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="Ellie Why">
+<meta property="article:author" content="Ellie Wxy">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,7 +121,7 @@
 
 
 
-  <title>Hexo</title>
+  <title>Ellie Wxy的博客</title>
   
 
 
@@ -152,7 +152,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Ellie Wxy的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -232,13 +232,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ellie Why">
+      <meta itemprop="name" content="Ellie Wxy">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Ellie Wxy的博客">
     </span>
 
     
@@ -303,7 +303,7 @@
             <h3 id="为什么要进行前端模块化"><a href="#为什么要进行前端模块化" class="headerlink" title="为什么要进行前端模块化"></a>为什么要进行前端模块化</h3><p>使用模块可以将项目功能分离，便于维护，方便复用，以及避免污染全局变量。</p>
 <h3 id="模块化的几种规范"><a href="#模块化的几种规范" class="headerlink" title="模块化的几种规范"></a>模块化的几种规范</h3><p>####commonjs</p>
 <ul>
-<li>通过require来调用模块，exports来导出方法，这样就可以使用模块暴露出来的公用方法/变量。</li>
+<li>通过require来调用模块，module.exports来定义模块对外输出的接口，这样就可以使用模块暴露出来的公用方法/变量。</li>
 <li>采用同步进行加载，加载完才会执行后面的操作<ul>
 <li>产生了AMD/CMD</li>
 </ul>
@@ -322,9 +322,18 @@
 <li>代表：seajs</li>
 <li>采用就近依赖的方法来加载模块，不在dependencies里依赖模块，在factory里就近加载依赖模块</li>
 </ul>
-<h4 id="es6"><a href="#es6" class="headerlink" title="es6"></a>es6</h4><p>使用import和export来进行模块间的调用</p>
+<h4 id="es6-module"><a href="#es6-module" class="headerlink" title="es6 module"></a>es6 module</h4><ul>
+<li>使用import和export来进行模块间的调用</li>
+<li>提供了export deafult来作为默认输出</li>
+</ul>
+<h4 id="commonjs与es6模块的差异"><a href="#commonjs与es6模块的差异" class="headerlink" title="commonjs与es6模块的差异"></a>commonjs与es6模块的差异</h4><ul>
+<li>commonjs是同步加载，es6模块是编译时输出接口</li>
+<li>commonjs输出的是值的拷贝，输出后模块的变化不会影响到这个值；es6模块输出的是值的引用，真正执行时再去取值</li>
+</ul>
 <blockquote>
-<p>参考 <a href="https://www.jianshu.com/p/508e24b026b8" target="_blank" rel="noopener">https://www.jianshu.com/p/508e24b026b8</a></p>
+<p>参考网址</p>
+<p> <a href="https://www.jianshu.com/p/508e24b026b8" target="_blank" rel="noopener">https://www.jianshu.com/p/508e24b026b8</a></p>
+<p><a href="https://juejin.im/post/5aaa37c8f265da23945f365c" target="_blank" rel="noopener">https://juejin.im/post/5aaa37c8f265da23945f365c</a></p>
 </blockquote>
 
           
@@ -377,13 +386,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ellie Why">
+      <meta itemprop="name" content="Ellie Wxy">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Ellie Wxy的博客">
     </span>
 
     
@@ -528,7 +537,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Ellie Why</p>
+              <p class="site-author-name" itemprop="name">Ellie Wxy</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -593,7 +602,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Ellie Why</span>
+  <span class="author" itemprop="copyrightHolder">Ellie Wxy</span>
 
   
 </div>
