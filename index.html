@@ -248,6 +248,571 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/15/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ellie Wxy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ellie Wxy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/15/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" itemprop="url">事件循环</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-15T20:42:33+08:00">
+                2020-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="什么是事件循环"><a href="#什么是事件循环" class="headerlink" title="什么是事件循环"></a>什么是事件循环</h3><p>事件循环，实际上是浏览器执行任务的机制。众所周知，js是单线程的，但是有时候如果要进行一些需要等待的操作，也就是异步操作，不可能一直阻塞等着结果的返回。所以就出现了事件循环。</p>
+<h4 id="事件循环的机制"><a href="#事件循环的机制" class="headerlink" title="事件循环的机制"></a>事件循环的机制</h4><p>首先，script中执行的代码分为同步和异步。同步代码直接执行，异步代码要在满足条件后被扔到相应的task queue中。</p>
+<p>在当前的执行栈为空后，浏览器会先去检查微任务队列，并将其中的任务执行。微任务队列为空后，去检查宏任务队列，如果有任务就执行。</p>
+<h4 id="宏任务-amp-微任务"><a href="#宏任务-amp-微任务" class="headerlink" title="宏任务&amp;微任务"></a>宏任务&amp;微任务</h4><p>先执行微任务队列中的任务，再执行宏任务队列中的任务</p>
+<p>宏任务</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setTimeout</span><br><span class="line">setInterval</span><br><span class="line">I/O任务</span><br></pre></td></tr></table></figure>
+
+<p>微任务</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span></span><br><span class="line">MutainObserver</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ellie Wxy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ellie Wxy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3/" itemprop="url">数据库相关</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-15T16:58:09+08:00">
+                2020-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="匹配语句"><a href="#匹配语句" class="headerlink" title="匹配语句"></a>匹配语句</h4><p>%代表任意单个字符的匹配</p>
+<h4 id="Left-join-Right-jon-Innerjoin"><a href="#Left-join-Right-jon-Innerjoin" class="headerlink" title="Left join,Right jon,Innerjoin"></a>Left join,Right jon,Innerjoin</h4><p>left join（左联接）：返回左表中的所有记录以及和右表中的联接字段相等的记录。</p>
+<blockquote>
+<p>相当于左表+右表中的等值部分</p>
+</blockquote>
+<p>right join（右联接）：返回右表中的所有记录以及和左表中的联接字段相等的记录。</p>
+<p>inner join（等值联接）：只返回两个表中联接字段相等的记录。</p>
+<blockquote>
+<p>相当于两个表的交集</p>
+</blockquote>
+<h4 id="SQL-truncate-、delete与drop区别"><a href="#SQL-truncate-、delete与drop区别" class="headerlink" title="SQL truncate 、delete与drop区别"></a>SQL truncate 、delete与drop区别</h4><ul>
+<li>truncate、delete只删除数据不删除表的结构，drop不仅要删除数据还要删除表的结构</li>
+</ul>
+<blockquote>
+<p>参考</p>
+<p><a href="https://www.jianshu.com/p/e7e6ce1200a4" target="_blank" rel="noopener">https://www.jianshu.com/p/e7e6ce1200a4</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/15/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ellie Wxy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ellie Wxy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/15/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93/" itemprop="url">浏览器渲染</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-15T16:08:41+08:00">
+                2020-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="css会阻塞DOM树吗"><a href="#css会阻塞DOM树吗" class="headerlink" title="css会阻塞DOM树吗"></a>css会阻塞DOM树吗</h4><p>css不会阻塞DOM树的解析，但是会阻塞DOM树的渲染</p>
+<h4 id="css会阻塞js吗"><a href="#css会阻塞js吗" class="headerlink" title="css会阻塞js吗"></a>css会阻塞js吗</h4><p>会，因为渲染线程和js线程会相互阻塞</p>
+<h4 id="js会阻塞渲染吗"><a href="#js会阻塞渲染吗" class="headerlink" title="js会阻塞渲染吗"></a>js会阻塞渲染吗</h4><p>会。</p>
+<p>可以用defer或async解决</p>
+<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><ul>
+<li>在html解析完成后再执行</li>
+</ul>
+<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><ul>
+<li>加载完后立即执行（仍然会阻塞html渲染</li>
+</ul>
+<h4 id="浏览器渲染的两个函数"><a href="#浏览器渲染的两个函数" class="headerlink" title="浏览器渲染的两个函数"></a>浏览器渲染的两个函数</h4><p>1.DOMContentLoaded</p>
+<p>表示DOM内容加载完毕</p>
+<p>2.onload</p>
+<p>页面上所有的资源（图片，音频，视频等）被加载以后才会触发load事件</p>
+<p><strong>onload事件会在DOMContentLoader事件之后触发</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/15/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ellie Wxy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ellie Wxy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/15/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/" itemprop="url">响应式布局</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-15T11:30:31+08:00">
+                2020-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="响应式布局是什么"><a href="#响应式布局是什么" class="headerlink" title="响应式布局是什么"></a>响应式布局是什么</h3><p>响应式布局就是实现不同屏幕分辨率的终端上浏览网页的不同展示方式，即在电脑、手机、平板上会有不同的展示页面。</p>
+<p>传统的布局方式是根据不同的尺寸写不同的页面，响应式布局要求一个网站一套就可以</p>
+<h3 id="响应式布局的实现方案"><a href="#响应式布局的实现方案" class="headerlink" title="响应式布局的实现方案"></a>响应式布局的实现方案</h3><p>1.设置meta标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>表示使用设备的宽度作为视图宽度</p>
+<p>2.设置媒体查询</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width:</span> <span class="number">980px</span>) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在屏幕宽度小于980px时会使用这一套css</p>
+<p>3.使用vh/vw</p>
+<p>vh/vw是相对于视窗的尺寸</p>
+<p>4.使用百分比</p>
+<p>在一些情况下容易炸（要慎重使用）</p>
+<p>5.使用一些新特性或框架</p>
+<p>例如</p>
+<ul>
+<li>Flex弹性布局，兼容性较差</li>
+<li>Grid网格布局，兼容性较差</li>
+<li>Columns栅格系统，往往需要依赖某个UI库，如Bootstrap</li>
+</ul>
+<blockquote>
+<p>参考</p>
+<p><a href="https://juejin.im/post/5caaa230e51d452b672f9703" target="_blank" rel="noopener">https://juejin.im/post/5caaa230e51d452b672f9703</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/DNS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -484,11 +1049,15 @@
       
         
           
-            <h4 id="闭包的优点"><a href="#闭包的优点" class="headerlink" title="闭包的优点"></a>闭包的优点</h4><p>1.会将变量保存在内存中</p>
+            <h4 id="闭包的形式"><a href="#闭包的形式" class="headerlink" title="闭包的形式"></a>闭包的形式</h4><p>闭包就是能够读取其他函数内部变量的函数</p>
+<h4 id="闭包的优点"><a href="#闭包的优点" class="headerlink" title="闭包的优点"></a>闭包的优点</h4><p>1.会将变量保存在内存中</p>
 <p>2.私有成员的存在</p>
 <p>3.避免全局变量的污染</p>
 <h4 id="闭包的缺点"><a href="#闭包的缺点" class="headerlink" title="闭包的缺点"></a>闭包的缺点</h4><p>1.常驻内存，增加内存使用量</p>
 <p>2.使用不当容易造成内存泄漏</p>
+<h4 id="闭包的使用"><a href="#闭包的使用" class="headerlink" title="闭包的使用"></a>闭包的使用</h4><p>用闭包写一个第n次输出，每隔1s输出1，2，3…</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;<span class="number">6</span>;i++)&#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">      &#125;,<span class="number">1000</span>*i) </span><br><span class="line">    &#125;)(i)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -1027,7 +1596,7 @@
               
                 <a href="/archives%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1038,7 +1607,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1049,7 +1618,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
