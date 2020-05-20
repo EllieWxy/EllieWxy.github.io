@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="运维," />
 
 
 
@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="闭包的形式闭包就是能够读取其他函数内部变量的函数 闭包的优点1.会将变量保存在内存中 2.私有成员的存在 3.避免全局变量的污染 闭包的缺点1.常驻内存，增加内存使用量 2.使用不当容易造成内存泄漏 闭包的使用用闭包写一个第n次输出，每隔1s输出1，2，3… 123456789function repeat()&amp;#123;  for(var i&#x3D;1;i&lt;6;i++)&amp;#123;    (fu">
+<meta name="description" content="pm2是一个带有负载均衡功能的node进程管理器，可以用它来跑node进程。可以帮助应用在崩溃后实现自动重启。 pm2 list 用来查看当前跑了哪些进程 pm2 logs 用来打印日志查看 保证常驻应用进程稳定运行： 定时重启，应用进程运行时间久了或许总会产生一些意料之外的问题，定时可以规避一些不可测的情况； 最大内存限制，根据观察设定合理内存限制，保证应用异常运行； 合理min_uptime，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="闭包">
-<meta property="og:url" content="http://yoursite.com/2020/05/14/%E9%97%AD%E5%8C%85/index.html">
+<meta property="og:title" content="node使用pm2">
+<meta property="og:url" content="http://yoursite.com/2020/05/19/node%E4%BD%BF%E7%94%A8pm2/index.html">
 <meta property="og:site_name" content="Ellie Wxy&#39;s Blog">
-<meta property="og:description" content="闭包的形式闭包就是能够读取其他函数内部变量的函数 闭包的优点1.会将变量保存在内存中 2.私有成员的存在 3.避免全局变量的污染 闭包的缺点1.常驻内存，增加内存使用量 2.使用不当容易造成内存泄漏 闭包的使用用闭包写一个第n次输出，每隔1s输出1，2，3… 123456789function repeat()&amp;#123;  for(var i&#x3D;1;i&lt;6;i++)&amp;#123;    (fu">
-<meta property="article:published_time" content="2020-05-14T12:49:54.000Z">
-<meta property="article:modified_time" content="2020-05-15T03:30:10.928Z">
+<meta property="og:description" content="pm2是一个带有负载均衡功能的node进程管理器，可以用它来跑node进程。可以帮助应用在崩溃后实现自动重启。 pm2 list 用来查看当前跑了哪些进程 pm2 logs 用来打印日志查看 保证常驻应用进程稳定运行： 定时重启，应用进程运行时间久了或许总会产生一些意料之外的问题，定时可以规避一些不可测的情况； 最大内存限制，根据观察设定合理内存限制，保证应用异常运行； 合理min_uptime，">
+<meta property="article:published_time" content="2020-05-19T12:39:14.000Z">
+<meta property="article:modified_time" content="2020-05-19T12:52:54.535Z">
 <meta property="article:author" content="Ellie Wxy">
-<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="运维">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/14/闭包/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/05/19/node使用pm2/"/>
 
 
 
 
 
-  <title>闭包 | Ellie Wxy's Blog</title>
+  <title>node使用pm2 | Ellie Wxy's Blog</title>
   
 
 
@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/%E9%97%AD%E5%8C%85/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/19/node%E4%BD%BF%E7%94%A8pm2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ellie Wxy">
@@ -269,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">闭包</h1>
+          <h1 class="post-title" itemprop="name headline">node使用pm2</h1>
         
 
         <div class="post-meta">
@@ -281,8 +281,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-14T20:49:54+08:00">
-                2020-05-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-19T20:39:14+08:00">
+                2020-05-19
               </time>
             
 
@@ -291,28 +291,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -341,15 +319,22 @@
       
 
       
-        <h4 id="闭包的形式"><a href="#闭包的形式" class="headerlink" title="闭包的形式"></a>闭包的形式</h4><p>闭包就是能够读取其他函数内部变量的函数</p>
-<h4 id="闭包的优点"><a href="#闭包的优点" class="headerlink" title="闭包的优点"></a>闭包的优点</h4><p>1.会将变量保存在内存中</p>
-<p>2.私有成员的存在</p>
-<p>3.避免全局变量的污染</p>
-<h4 id="闭包的缺点"><a href="#闭包的缺点" class="headerlink" title="闭包的缺点"></a>闭包的缺点</h4><p>1.常驻内存，增加内存使用量</p>
-<p>2.使用不当容易造成内存泄漏</p>
-<h4 id="闭包的使用"><a href="#闭包的使用" class="headerlink" title="闭包的使用"></a>闭包的使用</h4><p>用闭包写一个第n次输出，每隔1s输出1，2，3…</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;<span class="number">6</span>;i++)&#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">      &#125;,<span class="number">1000</span>*i) </span><br><span class="line">    &#125;)(i)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <p><code>pm2</code>是一个带有负载均衡功能的node进程管理器，可以用它来跑node进程。可以帮助应用在崩溃后实现自动重启。</p>
+<p><strong>pm2 list</strong></p>
+<p>用来查看当前跑了哪些进程</p>
+<p><strong>pm2 logs</strong></p>
+<p>用来打印日志查看</p>
+<h5 id="保证常驻应用进程稳定运行："><a href="#保证常驻应用进程稳定运行：" class="headerlink" title="保证常驻应用进程稳定运行："></a>保证常驻应用进程稳定运行：</h5><ul>
+<li>定时重启，应用进程运行时间久了或许总会产生一些意料之外的问题，定时可以规避一些不可测的情况；</li>
+<li>最大内存限制，根据观察设定合理内存限制，保证应用异常运行；</li>
+<li>合理min_uptime，min_uptime是应用正常启动的最小持续运行时长，超出此时间则被判定为异常启动；</li>
+<li>设定异常重启延时restart_delay，对于异常情况导致应用停止，设定异常重启延迟可防止应用在不可测情况下不断重启的导致重启次数过多等问题；</li>
+<li>设置异常重启次数，如果应用不断异常重启，并超过一定的限制次数，说明此时的环境长时间处于不可控状态，服务器异常。此时便可停止尝试，发出错误警告通知等。</li>
+</ul>
+<blockquote>
+<p>参考</p>
+<p><a href="https://github.com/jawil/blog/issues/7" target="_blank" rel="noopener">https://github.com/jawil/blog/issues/7</a></p>
+</blockquote>
 
       
     </div>
@@ -367,7 +352,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag"># 运维</a>
           
         </div>
       
@@ -380,8 +365,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/14/js%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" rel="next" title="js内存泄漏">
-                <i class="fa fa-chevron-left"></i> js内存泄漏
+              <a href="/2020/05/19/%E8%B7%A8%E5%9F%9F/" rel="next" title="跨域">
+                <i class="fa fa-chevron-left"></i> 跨域
               </a>
             
           </div>
@@ -389,10 +374,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/14/DNS/" rel="prev" title="DNS">
-                DNS <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -524,7 +505,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的形式"><span class="nav-number">1.</span> <span class="nav-text">闭包的形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的优点"><span class="nav-number">2.</span> <span class="nav-text">闭包的优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的缺点"><span class="nav-number">3.</span> <span class="nav-text">闭包的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的使用"><span class="nav-number">4.</span> <span class="nav-text">闭包的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#保证常驻应用进程稳定运行："><span class="nav-number">1.</span> <span class="nav-text">保证常驻应用进程稳定运行：</span></a></li></ol></div>
             
 
           </div>

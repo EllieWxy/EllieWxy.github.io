@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="javascript,node," />
 
 
 
@@ -86,9 +86,10 @@
 <meta property="og:site_name" content="Ellie Wxy&#39;s Blog">
 <meta property="og:description" content="什么是事件循环事件循环，实际上是浏览器执行任务的机制。众所周知，js是单线程的，但是有时候如果要进行一些需要等待的操作，也就是异步操作，不可能一直阻塞等着结果的返回。所以就出现了事件循环。 事件循环的机制首先，script中执行的代码分为同步和异步。同步代码直接执行，异步代码要在满足条件后被扔到相应的task queue中。 在当前的执行栈为空后，浏览器会先去检查微任务队列，并将其中的任务执行。微">
 <meta property="article:published_time" content="2020-05-15T12:42:33.000Z">
-<meta property="article:modified_time" content="2020-05-15T13:31:57.838Z">
+<meta property="article:modified_time" content="2020-05-20T03:27:46.730Z">
 <meta property="article:author" content="Ellie Wxy">
 <meta property="article:tag" content="javascript">
+<meta property="article:tag" content="node">
 <meta name="twitter:card" content="summary">
 
 
@@ -329,6 +330,51 @@
 <p>微任务</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span></span><br><span class="line">MutainObserver</span><br></pre></td></tr></table></figure>
 
+<h3 id="拓展-node中的事件循环"><a href="#拓展-node中的事件循环" class="headerlink" title="拓展-node中的事件循环"></a>拓展-node中的事件循环</h3><p>![image-20200520111252990](/Users/EllieWxy/Library/Application Support/typora-user-images/image-20200520111252990.png)</p>
+<p>node中的事件循环分为了六个阶段，顺序是从外部输入数据开始，之后<code>poll</code>-&gt; <code>check</code>-&gt;<code>close callbacks</code> -&gt; <code>timers</code> -&gt; <code>I/O callbacks</code> -&gt; <code>idle,prepare</code>-&gt; <code>poll</code></p>
+<p>每个阶段都有它负责的事件。</p>
+<ul>
+<li><p>timers 阶段：这个阶段执行timer（setTimeout、setInterval）的回调</p>
+</li>
+<li><p>I/O callbacks 阶段：处理一些上一轮循环中的少数未执行的 I/O 回调</p>
+</li>
+<li><p>idle, prepare 阶段：仅node内部使用</p>
+</li>
+<li><p>poll 阶段：获取新的I/O事件, 适当的条件下node将阻塞在这里</p>
+</li>
+<li><p>check 阶段：执行 setImmediate() 的回调</p>
+</li>
+<li><p>close callbacks 阶段：执行 socket 的 close 事件回调</p>
+</li>
+</ul>
+<h5 id="timers"><a href="#timers" class="headerlink" title="timers"></a>timers</h5><p>执行定时器（setTimeout,setInterval)</p>
+<h5 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h5><p>主要干两件事</p>
+<ol>
+<li>如果定时器已经超时，就返回定时器执行相应的回调函数。</li>
+<li>执行I/O回调<ul>
+<li>（所以大多数的I/O会在<code>poll</code>阶段执行，<code>I/O callback</code>负责执行上轮未执行的少部分回调）</li>
+</ul>
+</li>
+<li>如果没有要处理的定时器<ul>
+<li><code>poll</code>不为空的话，就执行<code>poll</code>中的回调函数</li>
+<li><code>poll</code>为空<ul>
+<li>存在<code>setImmediate</code>，从<code>poll</code>阶段进到<code>check</code>阶段</li>
+<li>不存在<code>setImmediate</code>，在<code>poll</code>阶段等待直到有事件为止</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="check"><a href="#check" class="headerlink" title="check"></a>check</h5><p>执行<code>setImmediate</code></p>
+<h5 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h5><p>在上一个阶段结束后，下一个阶段执行前进行执行</p>
+<h4 id="node-11-vs-node-10"><a href="#node-11-vs-node-10" class="headerlink" title="node 11 vs node 10"></a>node 11 vs node 10</h4><p>在node 11的机制中，执行完<strong>一个</strong>宏任务，就会去检查微任务队列并清空。</p>
+<p>而在node10以前的机制中，需要执行完<strong>一队</strong>宏任务，才会去检查微任务队列并清空。</p>
+<blockquote>
+<p>参考</p>
+<p><a href="https://juejin.im/post/5c337ae06fb9a049bc4cd218#heading-12" target="_blank" rel="noopener">浏览器与Node的事件循环(Event Loop)有何区别?</a></p>
+<p><a href="https://juejin.im/post/5b02693d518825426b277da0" target="_blank" rel="noopener">详解“Node.js环境”中的event loop机制</a></p>
+<p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/26" target="_blank" rel="noopener">第 25 题：浏览器和Node 事件循环的区别</a></p>
+</blockquote>
 
       
     </div>
@@ -347,6 +393,8 @@
         <div class="post-tags">
           
             <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/node/" rel="tag"># node</a>
           
         </div>
       
@@ -368,6 +416,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/17/http%E8%AF%B7%E6%B1%82/" rel="prev" title="http请求">
+                http请求 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -444,7 +496,7 @@
               
                 <a href="/archives%7C%7C%20archive">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -466,7 +518,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -499,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是事件循环"><span class="nav-number">1.</span> <span class="nav-text">什么是事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件循环的机制"><span class="nav-number">1.1.</span> <span class="nav-text">事件循环的机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#宏任务-amp-微任务"><span class="nav-number">1.2.</span> <span class="nav-text">宏任务&amp;微任务</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是事件循环"><span class="nav-number">1.</span> <span class="nav-text">什么是事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件循环的机制"><span class="nav-number">1.1.</span> <span class="nav-text">事件循环的机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#宏任务-amp-微任务"><span class="nav-number">1.2.</span> <span class="nav-text">宏任务&amp;微任务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓展-node中的事件循环"><span class="nav-number">2.</span> <span class="nav-text">拓展-node中的事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#timers"><span class="nav-number">2.0.1.</span> <span class="nav-text">timers</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#poll"><span class="nav-number">2.0.2.</span> <span class="nav-text">poll</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#check"><span class="nav-number">2.0.3.</span> <span class="nav-text">check</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nextTick"><span class="nav-number">2.0.4.</span> <span class="nav-text">nextTick</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#node-11-vs-node-10"><span class="nav-number">2.1.</span> <span class="nav-text">node 11 vs node 10</span></a></li></ol></li></ol></div>
             
 
           </div>

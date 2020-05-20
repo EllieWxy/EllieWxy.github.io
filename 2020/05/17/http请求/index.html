@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="计算机网络,浏览器," />
 
 
 
@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="闭包的形式闭包就是能够读取其他函数内部变量的函数 闭包的优点1.会将变量保存在内存中 2.私有成员的存在 3.避免全局变量的污染 闭包的缺点1.常驻内存，增加内存使用量 2.使用不当容易造成内存泄漏 闭包的使用用闭包写一个第n次输出，每隔1s输出1，2，3… 123456789function repeat()&amp;#123;  for(var i&#x3D;1;i&lt;6;i++)&amp;#123;    (fu">
+<meta name="description" content="http请求的并发性浏览器允许向一个host建立多个TCP连接，支持多个http同时请求。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="闭包">
-<meta property="og:url" content="http://yoursite.com/2020/05/14/%E9%97%AD%E5%8C%85/index.html">
+<meta property="og:title" content="http请求">
+<meta property="og:url" content="http://yoursite.com/2020/05/17/http%E8%AF%B7%E6%B1%82/index.html">
 <meta property="og:site_name" content="Ellie Wxy&#39;s Blog">
-<meta property="og:description" content="闭包的形式闭包就是能够读取其他函数内部变量的函数 闭包的优点1.会将变量保存在内存中 2.私有成员的存在 3.避免全局变量的污染 闭包的缺点1.常驻内存，增加内存使用量 2.使用不当容易造成内存泄漏 闭包的使用用闭包写一个第n次输出，每隔1s输出1，2，3… 123456789function repeat()&amp;#123;  for(var i&#x3D;1;i&lt;6;i++)&amp;#123;    (fu">
-<meta property="article:published_time" content="2020-05-14T12:49:54.000Z">
-<meta property="article:modified_time" content="2020-05-15T03:30:10.928Z">
+<meta property="og:description" content="http请求的并发性浏览器允许向一个host建立多个TCP连接，支持多个http同时请求。">
+<meta property="article:published_time" content="2020-05-17T13:29:19.000Z">
+<meta property="article:modified_time" content="2020-05-17T13:30:38.464Z">
 <meta property="article:author" content="Ellie Wxy">
-<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="浏览器">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/14/闭包/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/05/17/http请求/"/>
 
 
 
 
 
-  <title>闭包 | Ellie Wxy's Blog</title>
+  <title>http请求 | Ellie Wxy's Blog</title>
   
 
 
@@ -252,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/%E9%97%AD%E5%8C%85/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/17/http%E8%AF%B7%E6%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ellie Wxy">
@@ -269,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">闭包</h1>
+          <h1 class="post-title" itemprop="name headline">http请求</h1>
         
 
         <div class="post-meta">
@@ -281,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-14T20:49:54+08:00">
-                2020-05-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-17T21:29:19+08:00">
+                2020-05-17
               </time>
             
 
@@ -291,28 +292,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -341,15 +320,7 @@
       
 
       
-        <h4 id="闭包的形式"><a href="#闭包的形式" class="headerlink" title="闭包的形式"></a>闭包的形式</h4><p>闭包就是能够读取其他函数内部变量的函数</p>
-<h4 id="闭包的优点"><a href="#闭包的优点" class="headerlink" title="闭包的优点"></a>闭包的优点</h4><p>1.会将变量保存在内存中</p>
-<p>2.私有成员的存在</p>
-<p>3.避免全局变量的污染</p>
-<h4 id="闭包的缺点"><a href="#闭包的缺点" class="headerlink" title="闭包的缺点"></a>闭包的缺点</h4><p>1.常驻内存，增加内存使用量</p>
-<p>2.使用不当容易造成内存泄漏</p>
-<h4 id="闭包的使用"><a href="#闭包的使用" class="headerlink" title="闭包的使用"></a>闭包的使用</h4><p>用闭包写一个第n次输出，每隔1s输出1，2，3…</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;<span class="number">6</span>;i++)&#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">      &#125;,<span class="number">1000</span>*i) </span><br><span class="line">    &#125;)(i)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h3 id="http请求的并发性"><a href="#http请求的并发性" class="headerlink" title="http请求的并发性"></a>http请求的并发性</h3><p>浏览器允许向一个host建立多个TCP连接，支持多个http同时请求。</p>
 
       
     </div>
@@ -367,7 +338,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+          
+            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag"># 浏览器</a>
           
         </div>
       
@@ -380,8 +353,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/14/js%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" rel="next" title="js内存泄漏">
-                <i class="fa fa-chevron-left"></i> js内存泄漏
+              <a href="/2020/05/15/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" rel="next" title="事件循环">
+                <i class="fa fa-chevron-left"></i> 事件循环
               </a>
             
           </div>
@@ -390,8 +363,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/05/14/DNS/" rel="prev" title="DNS">
-                DNS <i class="fa fa-chevron-right"></i>
+              <a href="/2020/05/17/js%E8%AF%AD%E6%B3%95%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="prev" title="js语法知识点">
+                js语法知识点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -524,7 +497,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的形式"><span class="nav-number">1.</span> <span class="nav-text">闭包的形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的优点"><span class="nav-number">2.</span> <span class="nav-text">闭包的优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的缺点"><span class="nav-number">3.</span> <span class="nav-text">闭包的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的使用"><span class="nav-number">4.</span> <span class="nav-text">闭包的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#http请求的并发性"><span class="nav-number">1.</span> <span class="nav-text">http请求的并发性</span></a></li></ol></div>
             
 
           </div>
