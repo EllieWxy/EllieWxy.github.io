@@ -248,6 +248,139 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/%E5%85%B3%E4%BA%8Egit%E7%9A%84443/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ellie Wxy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ellie Wxy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/24/%E5%85%B3%E4%BA%8Egit%E7%9A%84443/" itemprop="url">关于git的443</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-24T16:31:08+08:00">
+                2020-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>之前因为用GitHub.io+hexo搭建了博客，所以在github中添加了sshkey，由于个人的拖延症所以很久都没再管自己原先的项目，结果一周后这个项目再git push就报错<code>Failed to connect to github.com port 443: Operation timed out</code></p>
+<h3 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h3><ol>
+<li>怀疑是网络问题，在从wifi切到手机热点，又把梯子的配置切到全局，然而一直都是443，此路不通。</li>
+<li>怀疑是host更改，查看<code>/etc/hosts</code>，没改过，此路不通。</li>
+<li>因为是添加ssh之后出现了这个问题，所以猜想和ssh有关系。在想会不会因为添加了<code>sshkey</code>之后github就只能用<code>ssh</code>来作仓库的<code>url</code>，所以在<code>.git/config</code>里把<code>url</code>里改成了<code>ssh</code>形式的。</li>
+<li>改成<code>ssh</code>形式也上不去，不过换了一个报错。报错提示让我确认<strong>access right</strong>并且<strong>repository exists</strong>.![image-20200524172426535](/Users/EllieWxy/Library/Application Support/typora-user-images/image-20200524172426535.png)</li>
+<li><code>ssh -T git@github.com</code>测试，timeout，猜测是ssh的问题。向github的添加sshkey,发现已经存在，也就是sshkey原本就存在了，按理来说应该能连上去。<ol>
+<li>后来发现是<code>./ssh/config</code>里没有配置github，添加了github配置之后，还是<code>timeout</code>，又切了热点才成功。</li>
+</ol>
+</li>
+</ol>
+<h4 id="乌龙事件"><a href="#乌龙事件" class="headerlink" title="乌龙事件"></a>乌龙事件</h4><p>但是我突然想到一件事！我之前连热点的时候，之前连手机热点的时候，手机还连着wifi，四舍五入就是连的wifi.</p>
+<p>于是在最后我又把<code>.git/config</code>里的url换回了<code>https</code>形式的，并且把手机的wifi关上了，再次<code>git fetch</code>，果然，成功了。</p>
+<h3 id="小感想"><a href="#小感想" class="headerlink" title="小感想"></a>小感想</h3><p>虽然绕了一大圈，最后发现是一开始的问题导致的…但是也让我对ssh的理解更深刻了。我之前用<code>git push</code>的时候也没有输过密码，现在想来可能是哪次保存了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/19/node%E4%BD%BF%E7%94%A8pm2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1567,156 +1700,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/%E9%97%AD%E5%8C%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ellie Wxy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ellie Wxy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/14/%E9%97%AD%E5%8C%85/" itemprop="url">闭包</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-14T20:49:54+08:00">
-                2020-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="闭包的形式"><a href="#闭包的形式" class="headerlink" title="闭包的形式"></a>闭包的形式</h4><p>闭包就是能够读取其他函数内部变量的函数</p>
-<h4 id="闭包的优点"><a href="#闭包的优点" class="headerlink" title="闭包的优点"></a>闭包的优点</h4><p>1.会将变量保存在内存中</p>
-<p>2.私有成员的存在</p>
-<p>3.避免全局变量的污染</p>
-<h4 id="闭包的缺点"><a href="#闭包的缺点" class="headerlink" title="闭包的缺点"></a>闭包的缺点</h4><p>1.常驻内存，增加内存使用量</p>
-<p>2.使用不当容易造成内存泄漏</p>
-<h4 id="闭包的使用"><a href="#闭包的使用" class="headerlink" title="闭包的使用"></a>闭包的使用</h4><p>用闭包写一个第n次输出，每隔1s输出1，2，3…</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;<span class="number">6</span>;i++)&#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">      &#125;,<span class="number">1000</span>*i) </span><br><span class="line">    &#125;)(i)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1767,7 +1750,7 @@
               
                 <a href="/archives%7C%7C%20archive">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1789,7 +1772,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
