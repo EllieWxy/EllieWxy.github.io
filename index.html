@@ -248,6 +248,565 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/06/js%E5%B8%B8%E8%80%83%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ellie Wxy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ellie Wxy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/06/js%E5%B8%B8%E8%80%83%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url">js常考知识点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-06T21:25:54+08:00">
+                2020-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'World!'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">'Jack'</span>;<span class="comment">//问题的关键</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Goodbye '</span> + name);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello '</span> + name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//Goodbye Jack</span></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>var</code>对name进行二次声明后，相当于在匿名函数内name这个变量已经被占用了，即在匿名函数内部发生了变量提升，所以一开始定义的name被内部的<code>name</code>覆盖，又因为变量提升只提升声明不提升初始化，所以在匿名函数的内部<code>name</code>为<code>undefined</code>，最后输出<code>Goodbey Jack</code></p>
+<h3 id="this的指向"><a href="#this的指向" class="headerlink" title="this的指向"></a>this的指向</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fullname = <span class="string">'1'</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  fullname: <span class="string">'2'</span>,</span><br><span class="line">  prop: &#123;</span><br><span class="line">    fullname: <span class="string">'3'</span>,</span><br><span class="line">    getFullname:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.fullname;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj.prop.getFullname());</span><br><span class="line"><span class="keyword">var</span> test = obj.prop.getFullname;</span><br><span class="line"><span class="built_in">console</span>.log(test());</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一个console，在运行时，有两层，一个是obj，另一个是obj.prop。如果一个函数中包含this，this指向它上一层的对象，即<code>obj.prop</code>，所以结果是3</li>
+<li>第二个console，运行时this指向的是<code>window</code>，<code>this.fullname = window.fullname = 1</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将函数换为箭头函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fullname = <span class="string">'1'</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  fullname: <span class="string">'2'</span>,</span><br><span class="line">  prop: &#123;</span><br><span class="line">    fullname: <span class="string">'3'</span>,</span><br><span class="line">    getFullname:<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.fullname;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj.prop.getFullname());</span><br><span class="line"><span class="keyword">var</span> test = obj.prop.getFullname;</span><br><span class="line"><span class="built_in">console</span>.log(test());</span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<p>箭头函数的特性是它的<code>this</code>是上下文的<code>this</code>，在本段代码中，<code>getFullname</code>中的<code>this</code>就是<code>prop</code>对象中的<code>this</code>，在普通函数中，<code>this</code>是在函数调用时才被确定的，而在箭头函数中，<code>this</code>的指向在一开始就被确定了。</p>
+<p><strong>箭头函数的this是从作用域的上一层链继承的</strong>，在本段代码中，只有对象，所以<code>this</code>的指向不断向上，最终指向<code>windows</code>，输出两个<code>1</code></p>
+<blockquote>
+<p>一开始用了webstorm运行，运行出来的结果是undefined，这是因为在webstorm创建的js文件中，默认是nodejs文件。两个语言虽然语法相同，但是还是有很大区别的。粘贴到chrome的控制台之后，就都输出了1.</p>
+</blockquote>
+<h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3><p>盒模型分为IE盒模型和标准盒模型。</p>
+<ul>
+<li>IE盒模型 = margin + content( border + padding + height/width )</li>
+<li>标准盒模型 = margin + border + padding + content( height/width )</li>
+</ul>
+<p>如果设置IE盒模型<code>height:100px</code>，那么这<code>100px</code>中包括<code>border + padding + height/width</code>，即css中的<code>height</code>实际上设置的是<code>content</code>的高</p>
+<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h4 id="同源策略的限制"><a href="#同源策略的限制" class="headerlink" title="同源策略的限制"></a>同源策略的限制</h4><p>同源策略会使以下三种受到限制。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1） Cookie、LocalStorage 和 IndexDB 无法读取。</span><br><span class="line">（2） DOM 无法获得。</span><br><span class="line">（3） AJAX 请求不能发送。</span><br></pre></td></tr></table></figure>
+
+<h4 id="同源"><a href="#同源" class="headerlink" title="同源"></a>同源</h4><p>同源指的是协议、域名、端口这个三元组一致。</p>
+<p><code>http://toutiao.com</code>和<code>http://www.toutiao.com</code>不同源，因为它们的域名不同。</p>
+<h4 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h4><p>csrf是因为自动携带cookie而产生的安全性问题，为什么有同源策略还会出现这个问题呢？</p>
+<p>因为同源策略对cookie的限制是<strong>无法读取</strong>，但是发请求的时候cookie是属于自动携带。所以即使是非同源，也是默认会携带cookie的。</p>
+<h5 id="如何限制csrf？"><a href="#如何限制csrf？" class="headerlink" title="如何限制csrf？"></a>如何限制csrf？</h5><p>可以考虑用cookie的sameSite属性进行限制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sameSite:</span><br><span class="line">- Strict &#x2F;&#x2F;完全禁止第三方Cookie</span><br><span class="line">- Lax &#x2F;&#x2F;导航到目标网址的GET请求除外，大部分情况不发送 注：最常用</span><br><span class="line">- None &#x2F;&#x2F;显式关闭sameSite属性 ps：只有设置secure属性有效</span><br></pre></td></tr></table></figure>
+
+<h5 id="httpOnly"><a href="#httpOnly" class="headerlink" title="httpOnly"></a>httpOnly</h5><p>只能防止js读取cookie</p>
+<h3 id="css部分"><a href="#css部分" class="headerlink" title="css部分"></a>css部分</h3><h4 id="font-size"><a href="#font-size" class="headerlink" title="font-size"></a>font-size</h4><p>最小值12px(chrome)</p>
+<h5 id="如何突破font-size的最小值？"><a href="#如何突破font-size的最小值？" class="headerlink" title="如何突破font-size的最小值？"></a>如何突破font-size的最小值？</h5><ol>
+<li>使用<code>transform:scale(0.75)</code>，进行缩放</li>
+<li>用户自行调整<code>chrome://settings/fonts</code>，这个方法和前端没关系</li>
+</ol>
+<h4 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h4><p>transform会触发硬件加速，拥有这个属性的元素会被提升到复合层，不触发重排&amp;重绘。</p>
+<h5 id="什么情况下会创建层"><a href="#什么情况下会创建层" class="headerlink" title="什么情况下会创建层"></a>什么情况下会创建层</h5><ul>
+<li><p>3D 或透视变换(perspective transform) CSS 属性</p>
+</li>
+<li><p>使用加速视频解码的元素，如<video></p>
+</li>
+<li><p>拥有 3D (WebGL) 上下文或加速的 2D 上下文的元素，如<canvas></p>
+</li>
+<li><p>混合插件(如 Flash)</p>
+</li>
+<li><p>对自己的 opacity 做 CSS 动画或使用一个动画 webkit 变换的元素</p>
+</li>
+<li><p>拥有加速 CSS 过滤器的元素，如CSS filters</p>
+</li>
+<li><p>元素有一个包含复合层的后代节点(换句话说，就是一个元素拥有一个子元素，该子元素在自己的层里)</p>
+</li>
+<li><p>元素有一个 z-index 较低且包含一个复合层的兄弟元素(换句话说就是该元素在复合层上面渲染)</p>
+</li>
+</ul>
+<h4 id="css3硬件加速（GPU加速）"><a href="#css3硬件加速（GPU加速）" class="headerlink" title="css3硬件加速（GPU加速）"></a>css3硬件加速（GPU加速）</h4><p>通过GPU进行渲染</p>
+<h5 id="触发硬件加速"><a href="#触发硬件加速" class="headerlink" title="触发硬件加速"></a>触发硬件加速</h5><ul>
+<li>transform</li>
+<li>opacity</li>
+<li>filter</li>
+<li>will-change：哪一个属性即将发生变化，进而进行优化。e.g.<code>will-change:transform</code></li>
+</ul>
+<h5 id="GPU加速的坑"><a href="#GPU加速的坑" class="headerlink" title="GPU加速的坑"></a>GPU加速的坑</h5><p>会导致内存问题</p>
+<h5 id="GPU加速的优点"><a href="#GPU加速的优点" class="headerlink" title="GPU加速的优点"></a>GPU加速的优点</h5><p>更快，动画会很流畅</p>
+<h4 id="浮动塌陷"><a href="#浮动塌陷" class="headerlink" title="浮动塌陷"></a>浮动塌陷</h4><p>解决方法：</p>
+<ol>
+<li>兄弟元素<code>clear:both</code></li>
+<li>父级元素<code>overflow:hidden</code></li>
+</ol>
+<h5 id="为什么父级元素设置overflow解决浮动塌陷"><a href="#为什么父级元素设置overflow解决浮动塌陷" class="headerlink" title="为什么父级元素设置overflow解决浮动塌陷"></a>为什么父级元素设置overflow解决浮动塌陷</h5><p>设置overflow之后会形成BFC，开始计算父级元素的高度，所以会被撑开。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/21/%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ellie Wxy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ellie Wxy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/21/%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9D%91/" itemprop="url">项目的坑</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T12:04:20+08:00">
+                2020-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h3><p>使用<code>context</code>的时候，<code>context</code>的值一直为<code>{}</code>，但是调试的时候<code>Provider</code>的值是没有问题的，查看子组件中的<code>UserContext</code>，一导入就<code>console</code>，发现值为<code>undefined</code>，说明值没有传进来，最后捣鼓了半天才发现是循环引用。</p>
+<p>在项目中有一个<code>Main</code>，<code>Main</code>中<code>import page</code>时<code>webpack</code>会去<code>Pages</code>里面打包，这个时候<code>Main</code>中还没有对<code>UserContext</code>进行声明，所以<code>Pages</code>中的<code>UserContext</code>是<code>undefined</code>.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/09/Docker-php-fpm-nginx-mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ellie Wxy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ellie Wxy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/Docker-php-fpm-nginx-mysql/" itemprop="url">Docker+php-fpm+nginx+mysql</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T18:12:00+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>不是教程</strong>！就记录一下自己踩的坑。</p>
+<p>大概半年前，帮别人写了一次php，然后就扔那没管了，过了半年之后又有新的需要，要再写php了，只记得自己是用docker启动的了…还留了一个<code>start.run</code>专门用来启动，启动起来完全忘记怎么访问了，打开<code>phpstorm</code>之后，提醒<code>php-cgi not found</code>，按照搜来的教程，使用<code>homebrew</code>重新安装<code>php</code>来解决这个问题…但是我记得我半年前是跑起来的啊！证明半年后应该也可以跑才对，但是实在找不到在哪里访问，于是就使用<code>brew install php</code>开始安装，本来故事到这里也该结束了，然而我家网络不是很好使…<code>php</code>要装一堆依赖，又死活下不下来，于是就开始想半年前到底是怎么搞的。</p>
+<p>用<code>docker</code>装了三个镜像，分别是<code>nginx、bitnami/php-fpm、mysql</code>，使用<code>nginx</code>进行代理，使得<strong>本地的某个端口</strong>相当于镜像的80端口，直接访问本地的此端口就可以了。</p>
+<p>其实我也有过疑惑，使用<code>docker ps</code>查看了<code>nginx</code>，发现是把<code>8081</code>代理过去了，但是只访问<code>8081</code>端口就是<code>403 Forbidden</code>…后来发现必须有文件才行，唉，可见对知识不够了解，瞎蒙也容易和答案错过。</p>
+<h4 id="docker里的地址分配"><a href="#docker里的地址分配" class="headerlink" title="docker里的地址分配"></a>docker里的地址分配</h4><p>因为要连接php，所以要知道php的ip地址，使得在本地里的php文件可以通过代理进行访问。在docker的分配里，启动的顺序和ip地址有关，所以写了一个<code>start.run</code>文件来启动服务，保证服务的一定顺序，那么php容器的地址就是相对固定的（因为平常也不拿它来干别的），就可以保证运行。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/jQuery%E5%92%8CReact%E7%9A%84%E6%AF%94%E8%BE%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ellie Wxy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ellie Wxy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/30/jQuery%E5%92%8CReact%E7%9A%84%E6%AF%94%E8%BE%83/" itemprop="url">jQuery和React的比较</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-30T13:46:02+08:00">
+                2020-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>近期写DocumentManagement尝试用React，在面试的时候有被问到React和jQuery有什么不同的，之前只是写也没有认真的思考过这个问题，趁着这次机会好好想一想。</p>
+<h4 id="响应式的React"><a href="#响应式的React" class="headerlink" title="响应式的React"></a>响应式的React</h4><p>React在前端上用的是响应式的，通过数据来驱动更新。在React的生命周期里，如果<code>state或者props</code>发生了变化，那么就会触发更新，执行render方法。React的更新是受数据控制的，而在jQuery当中，数据和前端的Dom并没有一个驱动的关系。</p>
+<h4 id="React-组件化"><a href="#React-组件化" class="headerlink" title="React 组件化"></a>React 组件化</h4><p>React整体写的思想就是一个使用组件的思想，在jQuery中，如果要使用同一个组件，需要把它在html上写一遍，还需要引用对应的js。</p>
+<h4 id="React的特性"><a href="#React的特性" class="headerlink" title="React的特性"></a>React的特性</h4><p>React操作的都是虚拟DOM，数据变化时，会重新构建DOM树，与之前的做比较。这一系列操作都是基于虚拟DOM的，最后将需要变化的部门进行实际渲染更新。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/%E5%85%B3%E4%BA%8Egit%E7%9A%84443/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1121,585 +1680,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ellie Wxy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ellie Wxy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3/" itemprop="url">数据库相关</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-15T16:58:09+08:00">
-                2020-05-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="匹配语句"><a href="#匹配语句" class="headerlink" title="匹配语句"></a>匹配语句</h4><p>%代表任意单个字符的匹配</p>
-<h4 id="Left-join-Right-jon-Innerjoin"><a href="#Left-join-Right-jon-Innerjoin" class="headerlink" title="Left join,Right jon,Innerjoin"></a>Left join,Right jon,Innerjoin</h4><p>left join（左联接）：返回左表中的所有记录以及和右表中的联接字段相等的记录。</p>
-<blockquote>
-<p>相当于左表+右表中的等值部分</p>
-</blockquote>
-<p>right join（右联接）：返回右表中的所有记录以及和左表中的联接字段相等的记录。</p>
-<p>inner join（等值联接）：只返回两个表中联接字段相等的记录。</p>
-<blockquote>
-<p>相当于两个表的交集</p>
-</blockquote>
-<h4 id="SQL-truncate-、delete与drop区别"><a href="#SQL-truncate-、delete与drop区别" class="headerlink" title="SQL truncate 、delete与drop区别"></a>SQL truncate 、delete与drop区别</h4><ul>
-<li>truncate、delete只删除数据不删除表的结构，drop不仅要删除数据还要删除表的结构</li>
-</ul>
-<blockquote>
-<p>参考</p>
-<p><a href="https://www.jianshu.com/p/e7e6ce1200a4" target="_blank" rel="noopener">https://www.jianshu.com/p/e7e6ce1200a4</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/15/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ellie Wxy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ellie Wxy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/15/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93/" itemprop="url">浏览器渲染</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-15T16:08:41+08:00">
-                2020-05-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="css会阻塞DOM树吗"><a href="#css会阻塞DOM树吗" class="headerlink" title="css会阻塞DOM树吗"></a>css会阻塞DOM树吗</h4><p>css不会阻塞DOM树的解析，但是会阻塞DOM树的渲染</p>
-<h4 id="css会阻塞js吗"><a href="#css会阻塞js吗" class="headerlink" title="css会阻塞js吗"></a>css会阻塞js吗</h4><p>会，因为渲染线程和js线程会相互阻塞</p>
-<h4 id="js会阻塞渲染吗"><a href="#js会阻塞渲染吗" class="headerlink" title="js会阻塞渲染吗"></a>js会阻塞渲染吗</h4><p>会。</p>
-<p>可以用defer或async解决</p>
-<h5 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h5><ul>
-<li>在html解析完成后再执行</li>
-</ul>
-<h5 id="async"><a href="#async" class="headerlink" title="async"></a>async</h5><ul>
-<li>加载完后立即执行（仍然会阻塞html渲染</li>
-</ul>
-<h4 id="浏览器渲染的两个函数"><a href="#浏览器渲染的两个函数" class="headerlink" title="浏览器渲染的两个函数"></a>浏览器渲染的两个函数</h4><p>1.DOMContentLoaded</p>
-<p>表示DOM内容加载完毕</p>
-<p>2.onload</p>
-<p>页面上所有的资源（图片，音频，视频等）被加载以后才会触发load事件</p>
-<p><strong>onload事件会在DOMContentLoader事件之后触发</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/15/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ellie Wxy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ellie Wxy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/15/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/" itemprop="url">响应式布局</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-15T11:30:31+08:00">
-                2020-05-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="响应式布局是什么"><a href="#响应式布局是什么" class="headerlink" title="响应式布局是什么"></a>响应式布局是什么</h3><p>响应式布局就是实现不同屏幕分辨率的终端上浏览网页的不同展示方式，即在电脑、手机、平板上会有不同的展示页面。</p>
-<p>传统的布局方式是根据不同的尺寸写不同的页面，响应式布局要求一个网站一套就可以</p>
-<h3 id="响应式布局的实现方案"><a href="#响应式布局的实现方案" class="headerlink" title="响应式布局的实现方案"></a>响应式布局的实现方案</h3><p>1.设置meta标签</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>表示使用设备的宽度作为视图宽度</p>
-<p>2.设置媒体查询</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width:</span> <span class="number">980px</span>) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在屏幕宽度小于980px时会使用这一套css</p>
-<p>3.使用vh/vw</p>
-<p>vh/vw是相对于视窗的尺寸</p>
-<p>4.使用百分比</p>
-<p>在一些情况下容易炸（要慎重使用）</p>
-<p>5.使用一些新特性或框架</p>
-<p>例如</p>
-<ul>
-<li>Flex弹性布局，兼容性较差</li>
-<li>Grid网格布局，兼容性较差</li>
-<li>Columns栅格系统，往往需要依赖某个UI库，如Bootstrap</li>
-</ul>
-<blockquote>
-<p>参考</p>
-<p><a href="https://juejin.im/post/5caaa230e51d452b672f9703" target="_blank" rel="noopener">https://juejin.im/post/5caaa230e51d452b672f9703</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/DNS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ellie Wxy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ellie Wxy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/14/DNS/" itemprop="url">DNS</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-14T21:00:05+08:00">
-                2020-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="DNS解析方式"><a href="#DNS解析方式" class="headerlink" title="DNS解析方式"></a>DNS解析方式</h4><h5 id="分布域名解析"><a href="#分布域名解析" class="headerlink" title="分布域名解析"></a>分布域名解析</h5><p>在客户端上维护一个包含主机名和IP地址映射的静态解析文件</p>
-<h5 id="集中式域名解析"><a href="#集中式域名解析" class="headerlink" title="集中式域名解析"></a>集中式域名解析</h5><p>网络中有多台DNS服务器，负责维护域名/IP地址映射数据库。客户端从指定DNS服务器（本地DNS）获取内容，查找不到就会进行递归查询（本地问DNS，DNS问TLD，TLD问权威）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1750,7 +1730,7 @@
               
                 <a href="/archives%7C%7C%20archive">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1772,7 +1752,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

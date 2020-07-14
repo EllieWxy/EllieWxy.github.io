@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,面试," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="变量提升12345678910var name &#x3D; &#39;World!&#39;;(function () &amp;#123;  if (typeof name &#x3D;&#x3D;&#x3D; &#39;undefined&#39;) &amp;#123;    var name &#x3D; &#39;Jack&#39;;&#x2F;&#x2F;问题的关键    console.log(&#39;Goodbye &#39; + name);  &amp;#125; else &amp;#123;    console.log(&#39;Hell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js常考知识点">
+<meta property="og:url" content="http://yoursite.com/2020/07/06/js%E5%B8%B8%E8%80%83%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Ellie Wxy&#39;s Blog">
+<meta property="og:description" content="变量提升12345678910var name &#x3D; &#39;World!&#39;;(function () &amp;#123;  if (typeof name &#x3D;&#x3D;&#x3D; &#39;undefined&#39;) &amp;#123;    var name &#x3D; &#39;Jack&#39;;&#x2F;&#x2F;问题的关键    console.log(&#39;Goodbye &#39; + name);  &amp;#125; else &amp;#123;    console.log(&#39;Hell">
+<meta property="article:published_time" content="2020-07-06T13:25:54.000Z">
+<meta property="article:modified_time" content="2020-07-14T13:57:29.101Z">
+<meta property="article:author" content="Ellie Wxy">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/06/js常考知识点/"/>
+
+
+
+
+
+  <title>js常考知识点 | Ellie Wxy's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ellie Wxy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/06/js%E5%B8%B8%E8%80%83%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ellie Wxy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ellie Wxy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js常考知识点</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-06T21:25:54+08:00">
+                2020-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'World!'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">'Jack'</span>;<span class="comment">//问题的关键</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Goodbye '</span> + name);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello '</span> + name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//Goodbye Jack</span></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>var</code>对name进行二次声明后，相当于在匿名函数内name这个变量已经被占用了，即在匿名函数内部发生了变量提升，所以一开始定义的name被内部的<code>name</code>覆盖，又因为变量提升只提升声明不提升初始化，所以在匿名函数的内部<code>name</code>为<code>undefined</code>，最后输出<code>Goodbey Jack</code></p>
+<h3 id="this的指向"><a href="#this的指向" class="headerlink" title="this的指向"></a>this的指向</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fullname = <span class="string">'1'</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  fullname: <span class="string">'2'</span>,</span><br><span class="line">  prop: &#123;</span><br><span class="line">    fullname: <span class="string">'3'</span>,</span><br><span class="line">    getFullname:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.fullname;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj.prop.getFullname());</span><br><span class="line"><span class="keyword">var</span> test = obj.prop.getFullname;</span><br><span class="line"><span class="built_in">console</span>.log(test());</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一个console，在运行时，有两层，一个是obj，另一个是obj.prop。如果一个函数中包含this，this指向它上一层的对象，即<code>obj.prop</code>，所以结果是3</li>
+<li>第二个console，运行时this指向的是<code>window</code>，<code>this.fullname = window.fullname = 1</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将函数换为箭头函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fullname = <span class="string">'1'</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  fullname: <span class="string">'2'</span>,</span><br><span class="line">  prop: &#123;</span><br><span class="line">    fullname: <span class="string">'3'</span>,</span><br><span class="line">    getFullname:<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.fullname;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj.prop.getFullname());</span><br><span class="line"><span class="keyword">var</span> test = obj.prop.getFullname;</span><br><span class="line"><span class="built_in">console</span>.log(test());</span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<p>箭头函数的特性是它的<code>this</code>是上下文的<code>this</code>，在本段代码中，<code>getFullname</code>中的<code>this</code>就是<code>prop</code>对象中的<code>this</code>，在普通函数中，<code>this</code>是在函数调用时才被确定的，而在箭头函数中，<code>this</code>的指向在一开始就被确定了。</p>
+<p><strong>箭头函数的this是从作用域的上一层链继承的</strong>，在本段代码中，只有对象，所以<code>this</code>的指向不断向上，最终指向<code>windows</code>，输出两个<code>1</code></p>
+<blockquote>
+<p>一开始用了webstorm运行，运行出来的结果是undefined，这是因为在webstorm创建的js文件中，默认是nodejs文件。两个语言虽然语法相同，但是还是有很大区别的。粘贴到chrome的控制台之后，就都输出了1.</p>
+</blockquote>
+<h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3><p>盒模型分为IE盒模型和标准盒模型。</p>
+<ul>
+<li>IE盒模型 = margin + content( border + padding + height/width )</li>
+<li>标准盒模型 = margin + border + padding + content( height/width )</li>
+</ul>
+<p>如果设置IE盒模型<code>height:100px</code>，那么这<code>100px</code>中包括<code>border + padding + height/width</code>，即css中的<code>height</code>实际上设置的是<code>content</code>的高</p>
+<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h4 id="同源策略的限制"><a href="#同源策略的限制" class="headerlink" title="同源策略的限制"></a>同源策略的限制</h4><p>同源策略会使以下三种受到限制。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1） Cookie、LocalStorage 和 IndexDB 无法读取。</span><br><span class="line">（2） DOM 无法获得。</span><br><span class="line">（3） AJAX 请求不能发送。</span><br></pre></td></tr></table></figure>
+
+<h4 id="同源"><a href="#同源" class="headerlink" title="同源"></a>同源</h4><p>同源指的是协议、域名、端口这个三元组一致。</p>
+<p><code>http://toutiao.com</code>和<code>http://www.toutiao.com</code>不同源，因为它们的域名不同。</p>
+<h4 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h4><p>csrf是因为自动携带cookie而产生的安全性问题，为什么有同源策略还会出现这个问题呢？</p>
+<p>因为同源策略对cookie的限制是<strong>无法读取</strong>，但是发请求的时候cookie是属于自动携带。所以即使是非同源，也是默认会携带cookie的。</p>
+<h5 id="如何限制csrf？"><a href="#如何限制csrf？" class="headerlink" title="如何限制csrf？"></a>如何限制csrf？</h5><p>可以考虑用cookie的sameSite属性进行限制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sameSite:</span><br><span class="line">- Strict &#x2F;&#x2F;完全禁止第三方Cookie</span><br><span class="line">- Lax &#x2F;&#x2F;导航到目标网址的GET请求除外，大部分情况不发送 注：最常用</span><br><span class="line">- None &#x2F;&#x2F;显式关闭sameSite属性 ps：只有设置secure属性有效</span><br></pre></td></tr></table></figure>
+
+<h5 id="httpOnly"><a href="#httpOnly" class="headerlink" title="httpOnly"></a>httpOnly</h5><p>只能防止js读取cookie</p>
+<h3 id="css部分"><a href="#css部分" class="headerlink" title="css部分"></a>css部分</h3><h4 id="font-size"><a href="#font-size" class="headerlink" title="font-size"></a>font-size</h4><p>最小值12px(chrome)</p>
+<h5 id="如何突破font-size的最小值？"><a href="#如何突破font-size的最小值？" class="headerlink" title="如何突破font-size的最小值？"></a>如何突破font-size的最小值？</h5><ol>
+<li>使用<code>transform:scale(0.75)</code>，进行缩放</li>
+<li>用户自行调整<code>chrome://settings/fonts</code>，这个方法和前端没关系</li>
+</ol>
+<h4 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h4><p>transform会触发硬件加速，拥有这个属性的元素会被提升到复合层，不触发重排&amp;重绘。</p>
+<h5 id="什么情况下会创建层"><a href="#什么情况下会创建层" class="headerlink" title="什么情况下会创建层"></a>什么情况下会创建层</h5><ul>
+<li><p>3D 或透视变换(perspective transform) CSS 属性</p>
+</li>
+<li><p>使用加速视频解码的元素，如<video></p>
+</li>
+<li><p>拥有 3D (WebGL) 上下文或加速的 2D 上下文的元素，如<canvas></p>
+</li>
+<li><p>混合插件(如 Flash)</p>
+</li>
+<li><p>对自己的 opacity 做 CSS 动画或使用一个动画 webkit 变换的元素</p>
+</li>
+<li><p>拥有加速 CSS 过滤器的元素，如CSS filters</p>
+</li>
+<li><p>元素有一个包含复合层的后代节点(换句话说，就是一个元素拥有一个子元素，该子元素在自己的层里)</p>
+</li>
+<li><p>元素有一个 z-index 较低且包含一个复合层的兄弟元素(换句话说就是该元素在复合层上面渲染)</p>
+</li>
+</ul>
+<h4 id="css3硬件加速（GPU加速）"><a href="#css3硬件加速（GPU加速）" class="headerlink" title="css3硬件加速（GPU加速）"></a>css3硬件加速（GPU加速）</h4><p>通过GPU进行渲染</p>
+<h5 id="触发硬件加速"><a href="#触发硬件加速" class="headerlink" title="触发硬件加速"></a>触发硬件加速</h5><ul>
+<li>transform</li>
+<li>opacity</li>
+<li>filter</li>
+<li>will-change：哪一个属性即将发生变化，进而进行优化。e.g.<code>will-change:transform</code></li>
+</ul>
+<h5 id="GPU加速的坑"><a href="#GPU加速的坑" class="headerlink" title="GPU加速的坑"></a>GPU加速的坑</h5><p>会导致内存问题</p>
+<h5 id="GPU加速的优点"><a href="#GPU加速的优点" class="headerlink" title="GPU加速的优点"></a>GPU加速的优点</h5><p>更快，动画会很流畅</p>
+<h4 id="浮动塌陷"><a href="#浮动塌陷" class="headerlink" title="浮动塌陷"></a>浮动塌陷</h4><p>解决方法：</p>
+<ol>
+<li>兄弟元素<code>clear:both</code></li>
+<li>父级元素<code>overflow:hidden</code></li>
+</ol>
+<h5 id="为什么父级元素设置overflow解决浮动塌陷"><a href="#为什么父级元素设置overflow解决浮动塌陷" class="headerlink" title="为什么父级元素设置overflow解决浮动塌陷"></a>为什么父级元素设置overflow解决浮动塌陷</h5><p>设置overflow之后会形成BFC，开始计算父级元素的高度，所以会被撑开。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/21/%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9D%91/" rel="next" title="项目的坑">
+                <i class="fa fa-chevron-left"></i> 项目的坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ellie Wxy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量提升"><span class="nav-number">1.</span> <span class="nav-text">变量提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this的指向"><span class="nav-number">2.</span> <span class="nav-text">this的指向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#盒模型"><span class="nav-number">3.</span> <span class="nav-text">盒模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同源策略"><span class="nav-number">4.</span> <span class="nav-text">同源策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同源策略的限制"><span class="nav-number">4.1.</span> <span class="nav-text">同源策略的限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同源"><span class="nav-number">4.2.</span> <span class="nav-text">同源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSRF"><span class="nav-number">4.3.</span> <span class="nav-text">CSRF</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何限制csrf？"><span class="nav-number">4.3.1.</span> <span class="nav-text">如何限制csrf？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#httpOnly"><span class="nav-number">4.3.2.</span> <span class="nav-text">httpOnly</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css部分"><span class="nav-number">5.</span> <span class="nav-text">css部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#font-size"><span class="nav-number">5.1.</span> <span class="nav-text">font-size</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何突破font-size的最小值？"><span class="nav-number">5.1.1.</span> <span class="nav-text">如何突破font-size的最小值？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transform"><span class="nav-number">5.2.</span> <span class="nav-text">transform</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么情况下会创建层"><span class="nav-number">5.2.1.</span> <span class="nav-text">什么情况下会创建层</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#css3硬件加速（GPU加速）"><span class="nav-number">5.3.</span> <span class="nav-text">css3硬件加速（GPU加速）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#触发硬件加速"><span class="nav-number">5.3.1.</span> <span class="nav-text">触发硬件加速</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GPU加速的坑"><span class="nav-number">5.3.2.</span> <span class="nav-text">GPU加速的坑</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GPU加速的优点"><span class="nav-number">5.3.3.</span> <span class="nav-text">GPU加速的优点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮动塌陷"><span class="nav-number">5.4.</span> <span class="nav-text">浮动塌陷</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么父级元素设置overflow解决浮动塌陷"><span class="nav-number">5.4.1.</span> <span class="nav-text">为什么父级元素设置overflow解决浮动塌陷</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ellie Wxy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
