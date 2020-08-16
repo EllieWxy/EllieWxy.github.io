@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Ellie Wxy&#39;s Blog">
 <meta property="og:description" content="变量提升12345678910var name &#x3D; &#39;World!&#39;;(function () &amp;#123;  if (typeof name &#x3D;&#x3D;&#x3D; &#39;undefined&#39;) &amp;#123;    var name &#x3D; &#39;Jack&#39;;&#x2F;&#x2F;问题的关键    console.log(&#39;Goodbye &#39; + name);  &amp;#125; else &amp;#123;    console.log(&#39;Hell">
 <meta property="article:published_time" content="2020-07-06T13:25:54.000Z">
-<meta property="article:modified_time" content="2020-07-14T13:57:29.101Z">
+<meta property="article:modified_time" content="2020-08-16T08:19:48.822Z">
 <meta property="article:author" content="Ellie Wxy">
 <meta property="article:tag" content="js">
 <meta property="article:tag" content="面试">
@@ -360,22 +360,14 @@
 </ol>
 <h4 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h4><p>transform会触发硬件加速，拥有这个属性的元素会被提升到复合层，不触发重排&amp;重绘。</p>
 <h5 id="什么情况下会创建层"><a href="#什么情况下会创建层" class="headerlink" title="什么情况下会创建层"></a>什么情况下会创建层</h5><ul>
-<li><p>3D 或透视变换(perspective transform) CSS 属性</p>
-</li>
-<li><p>使用加速视频解码的元素，如<video></p>
-</li>
-<li><p>拥有 3D (WebGL) 上下文或加速的 2D 上下文的元素，如<canvas></p>
-</li>
-<li><p>混合插件(如 Flash)</p>
-</li>
-<li><p>对自己的 opacity 做 CSS 动画或使用一个动画 webkit 变换的元素</p>
-</li>
-<li><p>拥有加速 CSS 过滤器的元素，如CSS filters</p>
-</li>
-<li><p>元素有一个包含复合层的后代节点(换句话说，就是一个元素拥有一个子元素，该子元素在自己的层里)</p>
-</li>
-<li><p>元素有一个 z-index 较低且包含一个复合层的兄弟元素(换句话说就是该元素在复合层上面渲染)</p>
-</li>
+<li>3D 或透视变换(perspective transform) CSS 属性</li>
+<li>使用加速视频解码的元素，如<video></li>
+<li>拥有 3D (WebGL) 上下文或加速的 2D 上下文的元素，如<canvas></li>
+<li>混合插件(如 Flash)</li>
+<li>对自己的 opacity 做 CSS 动画或使用一个动画 webkit 变换的元素</li>
+<li>拥有加速 CSS 过滤器的元素，如CSS filters</li>
+<li>元素有一个包含复合层的后代节点(换句话说，就是一个元素拥有一个子元素，该子元素在自己的层里)</li>
+<li>元素有一个 z-index 较低且包含一个复合层的兄弟元素(换句话说就是该元素在复合层上面渲染)</li>
 </ul>
 <h4 id="css3硬件加速（GPU加速）"><a href="#css3硬件加速（GPU加速）" class="headerlink" title="css3硬件加速（GPU加速）"></a>css3硬件加速（GPU加速）</h4><p>通过GPU进行渲染</p>
 <h5 id="触发硬件加速"><a href="#触发硬件加速" class="headerlink" title="触发硬件加速"></a>触发硬件加速</h5><ul>
@@ -424,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/06/21/%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9D%91/" rel="next" title="项目的坑">
-                <i class="fa fa-chevron-left"></i> 项目的坑
+              <a href="/2020/06/09/Docker-php-fpm-nginx-mysql/" rel="next" title="Docker+php-fpm+nginx+mysql">
+                <i class="fa fa-chevron-left"></i> Docker+php-fpm+nginx+mysql
               </a>
             
           </div>
@@ -509,7 +501,7 @@
               
                 <a href="/archives%7C%7C%20archive">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
