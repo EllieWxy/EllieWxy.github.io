@@ -1217,6 +1217,14 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">    doStuff: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; &#125;,</span><br><span class="line">    doThings: [ <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;, <span class="literal">undefined</span> ]</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 输出结果:  "&#123;"doThings":[null,null]&#125;"</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="捕获全站的错误"><a href="#捕获全站的错误" class="headerlink" title="捕获全站的错误"></a>捕获全站的错误</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span> (<span class="params">event, source, line, col, err</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(event, <span class="string">'\n'</span>, source, <span class="string">'\n'</span>, line, <span class="string">'\n'</span>, col, <span class="string">'\n'</span>, err)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line">a = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//  Uncaught TypeError: Assignment to constant variable.</span></span><br><span class="line"><span class="comment">//  http://127.0.0.1:5500/test.html</span></span><br><span class="line"><span class="comment">//  16</span></span><br><span class="line"><span class="comment">//  7</span></span><br><span class="line"><span class="comment">//  TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 <blockquote>
 <p>参考</p>
 <p><a href="https://segmentfault.com/a/1190000007368846" target="_blank" rel="noopener">https://segmentfault.com/a/1190000007368846</a> // JSON.parse</p>
