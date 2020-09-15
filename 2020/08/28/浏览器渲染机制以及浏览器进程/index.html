@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="运维," />
+  <meta name="keywords" content="浏览器," />
 
 
 
@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="pm2是一个带有负载均衡功能的node进程管理器，可以用它来跑node进程。可以帮助应用在崩溃后实现自动重启。 pm2 list 用来查看当前跑了哪些进程 pm2 logs 用来打印日志查看 保证常驻应用进程稳定运行： 定时重启，应用进程运行时间久了或许总会产生一些意料之外的问题，定时可以规避一些不可测的情况； 最大内存限制，根据观察设定合理内存限制，保证应用异常运行； 合理min_uptime，">
+<meta name="description" content="浏览器的渲染机制简单来讲，浏览器的渲染有以下五个步骤  处理 HTML 标记并构建 DOM 树。 处理 CSS 标记并构建 CSSOM 树。 将 DOM 与 CSSOM 合并成一个渲染树。 根据渲染树来布局，以计算每个节点的几何信息。 将各个节点绘制到屏幕上  处理HTML标记并筹建DOM树 编码：将HTML原始数据解析成HTML字符串 令牌化：将字符串转化成各种令牌、StartTag&#x2F;EndTa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node使用pm2">
-<meta property="og:url" content="http://yoursite.com/2020/05/19/node%E4%BD%BF%E7%94%A8pm2/index.html">
+<meta property="og:title" content="浏览器渲染机制以及浏览器进程">
+<meta property="og:url" content="http://yoursite.com/2020/08/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%9B%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Ellie Wxy&#39;s Blog">
-<meta property="og:description" content="pm2是一个带有负载均衡功能的node进程管理器，可以用它来跑node进程。可以帮助应用在崩溃后实现自动重启。 pm2 list 用来查看当前跑了哪些进程 pm2 logs 用来打印日志查看 保证常驻应用进程稳定运行： 定时重启，应用进程运行时间久了或许总会产生一些意料之外的问题，定时可以规避一些不可测的情况； 最大内存限制，根据观察设定合理内存限制，保证应用异常运行； 合理min_uptime，">
-<meta property="article:published_time" content="2020-05-19T12:39:14.000Z">
-<meta property="article:modified_time" content="2020-05-19T12:52:54.535Z">
+<meta property="og:description" content="浏览器的渲染机制简单来讲，浏览器的渲染有以下五个步骤  处理 HTML 标记并构建 DOM 树。 处理 CSS 标记并构建 CSSOM 树。 将 DOM 与 CSSOM 合并成一个渲染树。 根据渲染树来布局，以计算每个节点的几何信息。 将各个节点绘制到屏幕上  处理HTML标记并筹建DOM树 编码：将HTML原始数据解析成HTML字符串 令牌化：将字符串转化成各种令牌、StartTag&#x2F;EndTa">
+<meta property="article:published_time" content="2020-08-28T11:20:07.000Z">
+<meta property="article:modified_time" content="2020-08-29T04:05:07.555Z">
 <meta property="article:author" content="Ellie Wxy">
-<meta property="article:tag" content="运维">
+<meta property="article:tag" content="浏览器">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/19/node使用pm2/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/08/28/浏览器渲染机制以及浏览器进程/"/>
 
 
 
 
 
-  <title>node使用pm2 | Ellie Wxy's Blog</title>
+  <title>浏览器渲染机制以及浏览器进程 | Ellie Wxy's Blog</title>
   
 
 
@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/19/node%E4%BD%BF%E7%94%A8pm2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6%E4%BB%A5%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%9B%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ellie Wxy">
@@ -269,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">node使用pm2</h1>
+          <h1 class="post-title" itemprop="name headline">浏览器渲染机制以及浏览器进程</h1>
         
 
         <div class="post-meta">
@@ -281,8 +281,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-19T20:39:14+08:00">
-                2020-05-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-28T19:20:07+08:00">
+                2020-08-28
               </time>
             
 
@@ -319,21 +319,95 @@
       
 
       
-        <p><code>pm2</code>是一个带有负载均衡功能的node进程管理器，可以用它来跑node进程。可以帮助应用在崩溃后实现自动重启。</p>
-<p><strong>pm2 list</strong></p>
-<p>用来查看当前跑了哪些进程</p>
-<p><strong>pm2 logs</strong></p>
-<p>用来打印日志查看</p>
-<h5 id="保证常驻应用进程稳定运行："><a href="#保证常驻应用进程稳定运行：" class="headerlink" title="保证常驻应用进程稳定运行："></a>保证常驻应用进程稳定运行：</h5><ul>
-<li>定时重启，应用进程运行时间久了或许总会产生一些意料之外的问题，定时可以规避一些不可测的情况；</li>
-<li>最大内存限制，根据观察设定合理内存限制，保证应用异常运行；</li>
-<li>合理min_uptime，min_uptime是应用正常启动的最小持续运行时长，超出此时间则被判定为异常启动；</li>
-<li>设定异常重启延时restart_delay，对于异常情况导致应用停止，设定异常重启延迟可防止应用在不可测情况下不断重启的导致重启次数过多等问题；</li>
-<li>设置异常重启次数，如果应用不断异常重启，并超过一定的限制次数，说明此时的环境长时间处于不可控状态，服务器异常。此时便可停止尝试，发出错误警告通知等。</li>
+        <h2 id="浏览器的渲染机制"><a href="#浏览器的渲染机制" class="headerlink" title="浏览器的渲染机制"></a>浏览器的渲染机制</h2><p>简单来讲，浏览器的渲染有以下五个步骤</p>
+<ol>
+<li>处理 HTML 标记并构建 DOM 树。</li>
+<li>处理 CSS 标记并构建 CSSOM 树。</li>
+<li>将 DOM 与 CSSOM 合并成一个渲染树。</li>
+<li>根据渲染树来布局，以计算每个节点的几何信息。</li>
+<li>将各个节点绘制到屏幕上</li>
+</ol>
+<h3 id="处理HTML标记并筹建DOM树"><a href="#处理HTML标记并筹建DOM树" class="headerlink" title="处理HTML标记并筹建DOM树"></a>处理HTML标记并筹建DOM树</h3><ul>
+<li>编码：将HTML原始数据解析成HTML字符串</li>
+<li>令牌化：将字符串转化成各种令牌、<code>StartTag/EndTag</code></li>
+<li>生成对象：根据令牌生成节点对象</li>
+<li>构建DOM树</li>
+</ul>
+<p>![image-20200828205915511](/Users/EllieWxy/Library/Application Support/typora-user-images/image-20200828205915511.png)</p>
+<h3 id="构建CSSOM树"><a href="#构建CSSOM树" class="headerlink" title="构建CSSOM树"></a>构建CSSOM树</h3><p>像构建DOM树一样构建CSSOM树</p>
+<h3 id="将DOM和CSSOM合成一颗渲染树"><a href="#将DOM和CSSOM合成一颗渲染树" class="headerlink" title="将DOM和CSSOM合成一颗渲染树"></a>将DOM和CSSOM合成一颗渲染树</h3><p>浏览器从DOM的根节点开始遍历，对每个节点匹配到适用的css规则并应用</p>
+<h3 id="根据渲染树来布局，以计算每个节点的几何信息"><a href="#根据渲染树来布局，以计算每个节点的几何信息" class="headerlink" title="根据渲染树来布局，以计算每个节点的几何信息"></a>根据渲染树来布局，以计算每个节点的几何信息</h3><p>布局来确定每个节点的宽高以及位置；如果随后需要重新计算则称为回流。</p>
+<h2 id="浏览器的进程机制"><a href="#浏览器的进程机制" class="headerlink" title="浏览器的进程机制"></a>浏览器的进程机制</h2><p>浏览器是多进程的，使得一个tab页崩溃/一个插件崩溃不会影响整个浏览器</p>
+<ul>
+<li><p>Browser 进程：浏览器的主进程，只有一个。</p>
+<ul>
+<li><p>负责浏览器界面的显示与交互；</p>
+</li>
+<li><p>各个页面的管理，创建和销毁其他进程；</p>
+</li>
+<li><p>网络的资源管理、下载等。</p>
+</li>
+</ul>
+</li>
+<li><p>Renderer 进程：也称为浏览器渲染进程或浏览器内核，内部是多线程的。主要负责页面渲染，脚本执行，事件处理等。</p>
+<ul>
+<li><p>GUI 渲染线程 -&gt;负责渲染、重排重绘</p>
+</li>
+<li><p>JavaScript引擎线程 -&gt;负责处理js脚本，与GUI渲染线程互斥</p>
+</li>
+<li><p>事件触发线程 -&gt; 用来控制事件循环</p>
+</li>
+<li><p>定时器触发线程 -&gt; 控制setTimeout和setInterval</p>
+</li>
+<li><p>异步http请求线程</p>
+</li>
+</ul>
+</li>
+<li><p>第三方插件进程：每种类型的插件对应一个进程，仅当使用该插件时才创建。</p>
+</li>
+<li><p>GPU 进程：最多一个，用于 3D 绘制等</p>
+</li>
+</ul>
+<h2 id="相互阻塞的问题"><a href="#相互阻塞的问题" class="headerlink" title="相互阻塞的问题"></a>相互阻塞的问题</h2><ul>
+<li><p>因为GUI渲染线程和js线程互斥，所以js和css、html解析都互斥，所以不建议把js放在开头</p>
+</li>
+<li><p>css解析不影响html解析，但是影响生成渲染树，故而影响dom渲染</p>
+<ul>
+<li>如果css文件卡住，就会影响css的解析，从而导致页面白屏</li>
+</ul>
+</li>
+<li><p>js会阻塞渲染，可以用defer或async解决</p>
+<ul>
+<li><p>defer：在html解析完成后再执行</p>
+</li>
+<li><p>async：加载完后立即执行（仍然会阻塞html渲染</p>
+</li>
+</ul>
+</li>
+<li><p>浏览器渲染的两个函数</p>
+<ul>
+<li><p>DOMContentLoaded：表示DOM内容加载完毕</p>
+</li>
+<li><p>onload：页面上所有的资源（图片，音频，视频等）被加载以后才会触发load事件</p>
+</li>
+<li><p><strong>onload事件会在DOMContentLoader事件之后触发</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何进行优化"><a href="#如何进行优化" class="headerlink" title="如何进行优化"></a>如何进行优化</h2><p>对于浏览器的展示，可以分为首屏优化，从输入url到页面渲染，经过了DNS查询、TCP连接、HTTP请求、服务端响应、客户端渲染。</p>
+<p>首屏加载速度可以从以下几个方面进行优化</p>
+<ul>
+<li>压缩图片、css&amp;js文件，使得http传输的文件体积减小</li>
+<li>合并css&amp;js文件、图片合并成一张，从而减少http传输的文件数量</li>
+<li>使用CDN进行缓存</li>
+<li>把css放在头部，js放在尾部</li>
+<li>利用好<code>async、defer</code>这两个属性</li>
 </ul>
 <blockquote>
 <p>参考</p>
-<p><a href="https://github.com/jawil/blog/issues/7" target="_blank" rel="noopener">https://github.com/jawil/blog/issues/7</a></p>
+<p><a href="https://juejin.im/entry/6844903503609987080" target="_blank" rel="noopener">浏览器的渲染：过程与原理</a></p>
+<p><a href="https://juejin.im/post/6844903667733118983" target="_blank" rel="noopener">css加载会造成阻塞吗？</a></p>
 </blockquote>
 
       
@@ -352,7 +426,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag"># 运维</a>
+            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag"># 浏览器</a>
           
         </div>
       
@@ -365,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/19/%E8%B7%A8%E5%9F%9F/" rel="next" title="跨域">
-                <i class="fa fa-chevron-left"></i> 跨域
+              <a href="/2020/07/06/js%E5%B8%B8%E8%80%83%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="next" title="js常考知识点">
+                <i class="fa fa-chevron-left"></i> js常考知识点
               </a>
             
           </div>
@@ -375,8 +449,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/05/24/%E5%85%B3%E4%BA%8Egit%E7%9A%84443/" rel="prev" title="关于git的443">
-                关于git的443 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/09/07/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="prev" title="面试知识点">
+                面试知识点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -509,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#保证常驻应用进程稳定运行："><span class="nav-number">1.</span> <span class="nav-text">保证常驻应用进程稳定运行：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的渲染机制"><span class="nav-number">1.</span> <span class="nav-text">浏览器的渲染机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#处理HTML标记并筹建DOM树"><span class="nav-number">1.1.</span> <span class="nav-text">处理HTML标记并筹建DOM树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建CSSOM树"><span class="nav-number">1.2.</span> <span class="nav-text">构建CSSOM树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将DOM和CSSOM合成一颗渲染树"><span class="nav-number">1.3.</span> <span class="nav-text">将DOM和CSSOM合成一颗渲染树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据渲染树来布局，以计算每个节点的几何信息"><span class="nav-number">1.4.</span> <span class="nav-text">根据渲染树来布局，以计算每个节点的几何信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的进程机制"><span class="nav-number">2.</span> <span class="nav-text">浏览器的进程机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相互阻塞的问题"><span class="nav-number">3.</span> <span class="nav-text">相互阻塞的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何进行优化"><span class="nav-number">4.</span> <span class="nav-text">如何进行优化</span></a></li></ol></div>
             
 
           </div>
