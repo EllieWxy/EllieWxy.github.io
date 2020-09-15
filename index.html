@@ -447,12 +447,16 @@
 <li>将各个节点绘制到屏幕上</li>
 </ol>
 <h3 id="处理HTML标记并筹建DOM树"><a href="#处理HTML标记并筹建DOM树" class="headerlink" title="处理HTML标记并筹建DOM树"></a>处理HTML标记并筹建DOM树</h3><ul>
-<li>编码：将HTML原始数据解析成HTML字符串</li>
-<li>令牌化：将字符串转化成各种令牌、<code>StartTag/EndTag</code></li>
-<li>生成对象：根据令牌生成节点对象</li>
-<li>构建DOM树</li>
+<li><p>编码：将HTML原始数据解析成HTML字符串</p>
+</li>
+<li><p>令牌化：将字符串转化成各种令牌、<code>StartTag/EndTag</code></p>
+</li>
+<li><p>生成对象：根据令牌生成节点对象</p>
+</li>
+<li><p>构建DOM树</p>
+<p><img src="/images/image-20200915112806613.png" alt="image-20200915112806613"></p>
+</li>
 </ul>
-<p>![image-20200828205915511](/Users/EllieWxy/Library/Application Support/typora-user-images/image-20200828205915511.png)</p>
 <h3 id="构建CSSOM树"><a href="#构建CSSOM树" class="headerlink" title="构建CSSOM树"></a>构建CSSOM树</h3><p>像构建DOM树一样构建CSSOM树</p>
 <h3 id="将DOM和CSSOM合成一颗渲染树"><a href="#将DOM和CSSOM合成一颗渲染树" class="headerlink" title="将DOM和CSSOM合成一颗渲染树"></a>将DOM和CSSOM合成一颗渲染树</h3><p>浏览器从DOM的根节点开始遍历，对每个节点匹配到适用的css规则并应用</p>
 <h3 id="根据渲染树来布局，以计算每个节点的几何信息"><a href="#根据渲染树来布局，以计算每个节点的几何信息" class="headerlink" title="根据渲染树来布局，以计算每个节点的几何信息"></a>根据渲染树来布局，以计算每个节点的几何信息</h3><p>布局来确定每个节点的宽高以及位置；如果随后需要重新计算则称为回流。</p>
