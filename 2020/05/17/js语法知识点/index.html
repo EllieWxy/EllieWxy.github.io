@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Ellie Wxy&#39;s Blog">
 <meta property="og:description" content="js转json将字符串转json的三种方法 var json &#x3D; JSON.parse(str); var json &#x3D; eval(“(“ + str + “)”); var json &#x3D; (new Function(“return “ + str))();  JSON.parse注意事项例如字符串var str &#x3D; &#39;{&quot;name&quot;:&quot;小明&quot;,&amp;q">
 <meta property="article:published_time" content="2020-05-17T13:40:57.000Z">
-<meta property="article:modified_time" content="2020-08-25T13:58:39.578Z">
+<meta property="article:modified_time" content="2020-09-20T14:44:59.008Z">
 <meta property="article:author" content="Ellie Wxy">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
@@ -343,17 +343,20 @@
 
 <h2 id="捕获全站的错误"><a href="#捕获全站的错误" class="headerlink" title="捕获全站的错误"></a>捕获全站的错误</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span> (<span class="params">event, source, line, col, err</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(event, <span class="string">'\n'</span>, source, <span class="string">'\n'</span>, line, <span class="string">'\n'</span>, col, <span class="string">'\n'</span>, err)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line">a = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//  Uncaught TypeError: Assignment to constant variable.</span></span><br><span class="line"><span class="comment">//  http://127.0.0.1:5500/test.html</span></span><br><span class="line"><span class="comment">//  16</span></span><br><span class="line"><span class="comment">//  7</span></span><br><span class="line"><span class="comment">//  TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
 <blockquote>
 <p>参考</p>
 <p><a href="https://segmentfault.com/a/1190000007368846" target="_blank" rel="noopener">https://segmentfault.com/a/1190000007368846</a> // JSON.parse</p>
 <p><a href="https://juejin.im/post/5be5b9f8518825512f58ba0e" target="_blank" rel="noopener">https://juejin.im/post/5be5b9f8518825512f58ba0e</a> //JSON.stringify</p>
 </blockquote>
+<h2 id="map-object-set"><a href="#map-object-set" class="headerlink" title="map object set"></a>map object set</h2><p>map和object都是作为键值对存在的，但map相较于object的好处是它可以用对象作为key，准确来说是可以用任意的数据作为key，但object只支持用string或者symbol作为key。此外，map的key是有顺序的，可以使用for…of做循环，关于键值对的数量可以直接通过size来获取，是相较于object来说更好的储存键值对的方式。</p>
+<p>set是值的集合，里面的值都是唯一的。ps:NaN也是唯一的</p>
+<h2 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h2><p>每个从<code>Symbol()</code>返回的symbol值都是唯一的，一个symbol值能作为一个对象属性的标识值，这是该数据类型仅有的目的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>(<span class="string">'foo'</span>) === <span class="built_in">Symbol</span>(<span class="string">'foo'</span>));</span><br><span class="line"><span class="comment">// expected output: false</span></span><br></pre></td></tr></table></figure>
+
+<p><code>symbol</code>设计的目的是为了防止对象的属性冲突发生。例如下面这个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> info1 = &#123;</span><br><span class="line">    name: <span class="string">'婷婷'</span>,</span><br><span class="line">    age: <span class="number">24</span>,</span><br><span class="line">    job: <span class="string">'公司前台'</span>,</span><br><span class="line">    description: <span class="string">'平时喜欢做做瑜伽，人家有男朋友，你别指望了'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> info2 = &#123;</span><br><span class="line">    description: <span class="string">'这小姑娘挺好的，挺热情的，嘿嘿嘿……'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//会出现覆盖，可以把description换成[Symbol('description')]，由于每一个symbol都是独一无二的，所以两个都会保留下来</span></span><br></pre></td></tr></table></figure>
+
+<p><code>symbol</code>在<code>for...in</code>迭代中不可枚举，如果想要达到效果，可以借助<code>Object.getOwnPropertySymbols(obj)</code></p>
 
       
     </div>
@@ -473,7 +476,7 @@
               
                 <a href="/archives%7C%7C%20archive">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -528,7 +531,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#js转json"><span class="nav-number">1.</span> <span class="nav-text">js转json</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#将字符串转json的三种方法"><span class="nav-number">1.1.</span> <span class="nav-text">将字符串转json的三种方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSON-parse注意事项"><span class="nav-number">1.2.</span> <span class="nav-text">JSON.parse注意事项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSON-stringify"><span class="nav-number">1.3.</span> <span class="nav-text">JSON.stringify</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#捕获全站的错误"><span class="nav-number"></span> <span class="nav-text">捕获全站的错误</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#js转json"><span class="nav-number">1.</span> <span class="nav-text">js转json</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#将字符串转json的三种方法"><span class="nav-number">1.1.</span> <span class="nav-text">将字符串转json的三种方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSON-parse注意事项"><span class="nav-number">1.2.</span> <span class="nav-text">JSON.parse注意事项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSON-stringify"><span class="nav-number">1.3.</span> <span class="nav-text">JSON.stringify</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#捕获全站的错误"><span class="nav-number"></span> <span class="nav-text">捕获全站的错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map-object-set"><span class="nav-number"></span> <span class="nav-text">map object set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#symbol"><span class="nav-number"></span> <span class="nav-text">symbol</span></a></div>
             
 
           </div>

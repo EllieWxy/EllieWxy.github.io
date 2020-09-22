@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Ellie Wxy&#39;s Blog">
 <meta property="og:description" content="匹配语句%代表任意单个字符的匹配 Left join,Right jon,Innerjoinleft join（左联接）：返回左表中的所有记录以及和右表中的联接字段相等的记录。  相当于左表+右表中的等值部分  right join（右联接）：返回右表中的所有记录以及和左表中的联接字段相等的记录。 inner join（等值联接）：只返回两个表中联接字段相等的记录。  相当于两个表的交集  SQL">
 <meta property="article:published_time" content="2020-05-15T08:58:09.000Z">
-<meta property="article:modified_time" content="2020-05-15T13:32:08.146Z">
+<meta property="article:modified_time" content="2020-09-17T09:58:22.544Z">
 <meta property="article:author" content="Ellie Wxy">
 <meta property="article:tag" content="理论知识">
 <meta property="article:tag" content="数据库">
@@ -338,6 +338,20 @@
 <p>参考</p>
 <p><a href="https://www.jianshu.com/p/e7e6ce1200a4" target="_blank" rel="noopener">https://www.jianshu.com/p/e7e6ce1200a4</a></p>
 </blockquote>
+<h4 id="sql索引"><a href="#sql索引" class="headerlink" title="sql索引"></a>sql索引</h4><p>优点</p>
+<ul>
+<li>通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。 </li>
+<li>可以大大加快数据的检索速度，这也是创建索引的最主要的原因。 </li>
+<li>可以加速表和表之间的连接，特别是在实现数据的参考完整性方面特别有意义。 </li>
+<li>在使用分组和排序子句进行数据检索时，同样可以显著减少查询中分组和排序的时间。 </li>
+<li>通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。 </li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加。 </li>
+<li>索引需要占物理空间，除了数据表占数据空间之外，每一个索引还要占一定的物理空间，如果要建立聚簇索引，那么需要的空间<br>就会更大。 </li>
+<li>当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护，这样就降低了数据的维护速度。 </li>
+</ul>
 
       
     </div>
@@ -461,7 +475,7 @@
               
                 <a href="/archives%7C%7C%20archive">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -516,7 +530,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#匹配语句"><span class="nav-number">1.</span> <span class="nav-text">匹配语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Left-join-Right-jon-Innerjoin"><span class="nav-number">2.</span> <span class="nav-text">Left join,Right jon,Innerjoin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-truncate-、delete与drop区别"><span class="nav-number">3.</span> <span class="nav-text">SQL truncate 、delete与drop区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#匹配语句"><span class="nav-number">1.</span> <span class="nav-text">匹配语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Left-join-Right-jon-Innerjoin"><span class="nav-number">2.</span> <span class="nav-text">Left join,Right jon,Innerjoin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-truncate-、delete与drop区别"><span class="nav-number">3.</span> <span class="nav-text">SQL truncate 、delete与drop区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql索引"><span class="nav-number">4.</span> <span class="nav-text">sql索引</span></a></li></ol></div>
             
 
           </div>
